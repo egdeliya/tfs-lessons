@@ -28,9 +28,10 @@ export class AddPurchaseComponent implements OnInit {
     const fieldElement = this.form.get(field);
     const fieldErrorMessages = this.formErrors[field];
     if (fieldElement && fieldElement.invalid) {
-      for (let errorInd = 0; errorInd < fieldElement.errors.length; errorInd++) {
-        const msg = fieldElement.errors[errorInd];
-        return fieldErrorMessages[msg];
+      for (const errorMsg in fieldElement.errors) {
+        if (fieldElement.errors.hasOwnProperty(errorMsg)) {
+          return fieldErrorMessages[errorMsg];
+        }
       }
     }
   }
