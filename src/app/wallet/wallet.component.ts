@@ -1,15 +1,18 @@
 import {Component, OnInit} from '@angular/core';
 import {Purchase} from '../model/purchase';
+import {PurchasePreviewComponent} from './purchase-preview/purchase-preview.component';
 
 @Component({
   selector: 'tfs-wallet',
   templateUrl: './wallet.component.html',
-  styleUrls: ['./wallet.component.css']
+  styleUrls: ['./wallet.component.css'],
 })
 export class WalletComponent implements OnInit {
   purchases: Purchase[] = [];
   total = 0;
-  isAddPurchaseOpen = false;
+  isAddPurchaseOpen = true;
+
+  buttonText: string;
 
   private currentOpen: number;
 
@@ -32,6 +35,7 @@ export class WalletComponent implements OnInit {
 
   toggleAdd() {
     this.isAddPurchaseOpen = !this.isAddPurchaseOpen;
+    this.buttonText = (this.buttonText === 'Добавить') ? 'Отменить' : 'Добавить';
   }
 
   onPreviewClick(index: number) {
