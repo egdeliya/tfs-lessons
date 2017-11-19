@@ -4,14 +4,47 @@
            type="text"
            class="form-control"
            automation-id="title-control"
-           placeholder="Название">
+           placeholder="Название"
+           required
+           #title>
+    <div automation-id="title-error"
+         class="invalid-feedback">
+
+      {{formErrorHandler('title')}}
+
+    </div>
   </div>
   <div class="form-group">
     <input formControlName="price"
            type="text"
            class="form-control"
            automation-id="price-control"
-           placeholder="Стоимость">
+           required
+           placeholder="Стоимость"
+          #price>
+
+    <div automation-id="price-error"
+         class="invalid-feedback">
+
+      {{formErrorHandler('price')}}
+
+    </div>
+  </div>
+  <div class="form-group">
+    <input formControlName="date"
+           type="text"
+           class="form-control"
+           automation-id="date-control"
+           placeholder="Дата"
+           #price>
+  </div>
+  <div class="form-group">
+    <textarea formControlName="comment"
+           type="text"
+           class="form-control"
+           automation-id="comment-control"
+           placeholder="Комментарий"
+              #price></textarea>
   </div>
   <div class="form-group">
     <button type="submit"
