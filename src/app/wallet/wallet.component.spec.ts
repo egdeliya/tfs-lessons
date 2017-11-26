@@ -296,7 +296,7 @@ describe('WalletComponent | компонент кошелька', () => {
     beforeEach(() => {
       walletHttpServiceSpy.updatePurchase.and.returnValue(Observable.of(null));
       walletHttpServiceSpy.getPurchases.calls.reset();
-      // component.onPurchaseEdit(getPurchaseMock());
+      component.onPurchaseEdit(getPurchaseMock());
     });
 
     it('вызывает метод обновления', () => {

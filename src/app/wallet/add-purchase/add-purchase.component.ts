@@ -46,11 +46,10 @@ export class AddPurchaseComponent implements OnInit {
 
   ngOnInit() {
     if (this.purchase) {
-      const dt = new Date(this.purchase.date);
       this.form = this.formBuilder.group({
         title: [this.purchase.title, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]],
         price: [this.purchase.price, [Validators.required, Validators.min(10), Validators.max(1000000), Validators.pattern(digitRegex)]],
-        date: [dt.toISOString().slice(0, 10)],
+        date: [this.purchase.date.slice(0, 10)],
         comment: [this.purchase.comment]
       });
     } else {
