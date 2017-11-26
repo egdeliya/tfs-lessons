@@ -3,6 +3,7 @@ import {FormBuilder, FormGroup, Validators} from '@angular/forms';
 import {Purchase} from '../../model/purchase';
 
 const digitRegex = /^\d*\.?\d+$/;
+const dateRegex = /^\d{4}-\d{2}-\d{2}$/;
 
 @Component({
   selector: 'tfs-add-purchase',
@@ -44,12 +45,21 @@ export class AddPurchaseComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.form = this.formBuilder.group({
-      title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(80)]],
-      price: ['', [Validators.required, Validators.min(10), Validators.max(1000000), Validators.pattern(digitRegex)]],
-      date: [''],
-      comment: ['']
-    });
+    if (this.purchase) {
+      this.form = this.formBuilder.group({
+        title: [this.purchase.title, [Validators.required, Validators.minLength(3), Validators.maxLength(80)]],
+        price: [this.purchase.price, [Validators.required, Validators.min(10), Validators.max(1000000), Validators.pattern(digitRegex)]],
+        date: [this.purchase.date.slice(0, 10)],
+        comment: [this.purchase.comment]
+      });
+    } else {
+      this.form = this.formBuilder.group({
+        title: ['', [Validators.required, Validators.minLength(3), Validators.maxLength(80)]],
+        price: ['', [Validators.required, Validators.min(10), Validators.max(1000000), Validators.pattern(digitRegex)]],
+        date: [''],
+        comment: ['']
+      });
+    }
   }
 
   onSubmit() {

@@ -51,7 +51,18 @@ export class WalletHttpService {
     );
   }
 
-  updatePurchase(x: any) {
-    return Observable.of();
+  updatePurchase(updPurchase: Purchase): Observable<any> {
+    if (updPurchase.id) {
+      const purchWithoutId = new Object({
+        title: updPurchase.title,
+        price: updPurchase.price,
+        date: updPurchase.date,
+        comment: updPurchase.comment
+      });
+      return this.http.put(`${BASE_URL}/purchases/${updPurchase.id}.json`, purchWithoutId);
+    } else {
+      // console.log("hello");
+      return Observable.of(null);
+    }
   }
 }
